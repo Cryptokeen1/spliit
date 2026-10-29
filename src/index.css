@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --canvas: #f1f2f6;
+  --ink: #0f1b33;
+  --muted: #666d80;
+  --card: #ffffff;
+  --line: rgba(15, 27, 51, 0.09);
+  --accent: #0f1b33;
+  --on-accent: #ffffff;
+  --field: rgba(255, 255, 255, 0.7);
+  --glass-edge: transparent;
+  --glass-shadow: 0 1px 2px rgba(15, 27, 51, 0.04), 0 8px 24px rgba(15, 27, 51, 0.04);
+  color-scheme: light;
+}
+
+html[data-theme='dark'] {
+  --canvas: #08090d;
+  --ink: #e8eefc;
+  --muted: #9aa8c7;
+  --card: #15171e;
+  --line: rgba(255, 255, 255, 0.09);
+  --accent: #e8eefc;
+  --on-accent: #0a101d;
+  --field: rgba(255, 255, 255, 0.07);
+  --glass-edge: rgba(255, 255, 255, 0.05);
+  --glass-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  background: var(--canvas);
+  min-height: 100dvh;
+}
+
+.font-display {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.glass {
+  background: var(--card);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--glass-shadow);
+}
+
+.field {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--field);
+  font: inherit;
+  color: var(--ink);
+  outline: none;
+}
+
+.field:focus {
+  border-color: #6d86b3;
+  box-shadow: 0 0 0 3px rgba(109, 134, 179, 0.2);
+}
+
+.btn-primary {
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+  border: 0;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font-weight: 500;
+  border: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: var(--field);
+}
+
+.btn-ghost:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Fixed-colour surfaces that must not follow the theme. */
+.hero-btn {
+  background: #ffffff;
+  color: #0f1b33;
+}
+
+.qr-box {
+  background: #ffffff;
+}
+
+body {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Dark theme: re-map the light utility classes used across the app. */
+html[data-theme='dark'] .bg-white { background-color: rgba(255, 255, 255, 0.1); }
+html[data-theme='dark'] .bg-white\/80 { background-color: rgba(255, 255, 255, 0.12); }
+html[data-theme='dark'] .bg-white\/70 { background-color: rgba(255, 255, 255, 0.09); }
+html[data-theme='dark'] .bg-white\/60 { background-color: rgba(255, 255, 255, 0.08); }
+html[data-theme='dark'] .bg-white\/40 { background-color: rgba(255, 255, 255, 0.05); }
+html[data-theme='dark'] .hover\:bg-white\/60:hover,
+html[data-theme='dark'] .hover\:bg-white\/70:hover { background-color: rgba(255, 255, 255, 0.14); }
+html[data-theme='dark'] .bg-emerald-50 { background-color: rgba(16, 185, 129, 0.16); }
+html[data-theme='dark'] .text-emerald-700 { color: #6ee7b7; }
+html[data-theme='dark'] .bg-amber-50 { background-color: rgba(245, 158, 11, 0.16); }
+html[data-theme='dark'] .text-amber-900,
+html[data-theme='dark'] .text-amber-800 { color: #fcd34d; }
+html[data-theme='dark'] .bg-red-50 { background-color: rgba(239, 68, 68, 0.16); }
+html[data-theme='dark'] .text-red-700 { color: #fca5a5; }
+
+/* Revolut-style circular quick actions. */
+.action-circle {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: var(--glass-shadow);
+  border: 1px solid var(--glass-edge);
+  transition: transform 0.15s ease;
+}
+
+.action-btn:hover:not(:disabled) .action-circle {
+  transform: translateY(-2px);
+}
+
+.action-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.scroll-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-bottom: 4px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scroll-row::-webkit-scrollbar {
+  display: none;
+}
